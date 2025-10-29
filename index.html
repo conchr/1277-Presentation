@@ -11,20 +11,47 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap');
         
+        :root {
+            --papyrus-color: #f5e9c9;
+            --papyrus-dark: #e0d2ab;
+            --papyrus-text: #3a2c1a;
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0d1117 0%, #1a1f2e 100%);
-            color: #e5e7eb;
+            background-color: var(--papyrus-color);
+            color: var(--papyrus-text);
             min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(205, 180, 130, 0.1) 0%, rgba(205, 180, 130, 0.1) 20%, transparent 20%, transparent 100%),
+                radial-gradient(circle at 90% 80%, rgba(205, 180, 130, 0.1) 0%, rgba(205, 180, 130, 0.1) 20%, transparent 20%, transparent 100%),
+                radial-gradient(circle at 50% 50%, rgba(205, 180, 130, 0.05) 0%, rgba(205, 180, 130, 0.05) 30%, transparent 30%, transparent 100%);
+            background-size: 300px 300px, 300px 300px, 200px 200px;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 79px, rgba(166, 144, 100, 0.1) 79px, rgba(166, 144, 100, 0.1) 81px, transparent 81px),
+                linear-gradient(rgba(166, 144, 100, 0.1) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 24px;
+            pointer-events: none;
+            z-index: -1;
         }
         
         .slide {
-            min-height: calc(100vh - 80px);
+            min-height: 100vh;
             display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+            padding: 1rem;
             animation: fadeIn 0.7s ease-in-out;
             position: relative;
             overflow: hidden;
@@ -40,29 +67,54 @@
         }
         
         .card {
-            background: rgba(22, 27, 34, 0.85);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            background: rgba(245, 233, 201, 0.85);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.1);
             max-width: 900px;
             width: 100%;
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(166, 144, 100, 0.3);
+            position: relative;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #8b6b46, #d4b78c, #8b6b46);
+            z-index: 10;
         }
         
         .header-title {
-            background: linear-gradient(90deg, #1f6feb 0%, #3b82f6 100%);
+            background: linear-gradient(90deg, #8b6b46 0%, #a67c52 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
         }
         
         .btn-nav {
             transition: all 0.3s ease;
-            background: rgba(31, 111, 235, 0.8);
+            background: rgba(139, 107, 70, 0.8);
+            border: 1px solid rgba(107, 81, 51, 0.5);
         }
         
         .btn-nav:hover {
-            background: #1f6feb;
+            background: #8b6b46;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(31, 111, 235, 0.4);
+            box-shadow: 0 5px 15px rgba(139, 107, 70, 0.4);
         }
         
         .timeline-container {
@@ -80,28 +132,31 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: #1f6feb;
+            background: #8b6b46;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 1rem;
             flex-shrink: 0;
+            color: white;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
         }
         
         .timeline-content {
             flex: 1;
             padding-bottom: 1.5rem;
-            border-left: 2px solid #1f6feb;
+            border-left: 2px solid #8b6b46;
             padding-left: 1.5rem;
         }
         
         .battle-map {
             width: 100%;
             height: 300px;
-            background: #1e293b;
+            background: #e0d2ab;
             border-radius: 8px;
             overflow: hidden;
             position: relative;
+            border: 1px solid rgba(107, 81, 51, 0.3);
         }
         
         .byzantine-army {
@@ -110,13 +165,14 @@
             left: 20%;
             width: 100px;
             height: 100px;
-            background: rgba(59, 130, 246, 0.7);
+            background: rgba(139, 107, 70, 0.7);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         .thessalian-army {
@@ -125,13 +181,14 @@
             right: 20%;
             width: 100px;
             height: 100px;
-            background: rgba(239, 68, 68, 0.7);
+            background: rgba(166, 110, 70, 0.7);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         .battle-arrow {
@@ -140,7 +197,7 @@
             left: 35%;
             width: 30%;
             height: 2px;
-            background: #ef4444;
+            background: #a66e46;
         }
         
         .battle-arrow::after {
@@ -150,7 +207,7 @@
             top: -5px;
             width: 0;
             height: 0;
-            border-left: 10px solid #ef4444;
+            border-left: 10px solid #a66e46;
             border-top: 5px solid transparent;
             border-bottom: 5px solid transparent;
         }
@@ -163,18 +220,19 @@
         }
         
         .consequence-card {
-            background: rgba(30, 41, 59, 0.7);
+            background: rgba(224, 210, 171, 0.7);
             border-radius: 8px;
             padding: 1.5rem;
-            border-left: 4px solid #1f6feb;
+            border-left: 4px solid #8b6b46;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
         }
         
         .consequence-card.negative {
-            border-left-color: #ef4444;
+            border-left-color: #a66e46;
         }
         
         .consequence-card.positive {
-            border-left-color: #10b981;
+            border-left-color: #7a8b46;
         }
         
         .progress-bar {
@@ -182,7 +240,7 @@
             top: 0;
             left: 0;
             height: 4px;
-            background: #1f6feb;
+            background: #8b6b46;
             width: 0%;
             transition: width 0.3s ease;
             z-index: 1000;
@@ -196,8 +254,131 @@
             height: 100%;
             background-size: cover;
             background-position: center;
-            opacity: 0.1;
+            opacity: 0.05;
             z-index: -1;
+        }
+        
+        /* Βελτιστοποίηση για κινητές συσκευές */
+        @media (max-width: 768px) {
+            .card {
+                margin: 0.5rem;
+                padding: 1rem;
+            }
+            
+            .header-title h1 {
+                font-size: 1.75rem;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+            }
+            
+            .timeline-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .timeline-content {
+                border-left: none;
+                border-top: 2px solid #8b6b46;
+                padding-left: 0;
+                padding-top: 1rem;
+            }
+            
+            .battle-map {
+                height: 200px;
+            }
+            
+            .byzantine-army, .thessalian-army {
+                width: 70px;
+                height: 70px;
+                font-size: 0.8rem;
+            }
+            
+            .consequences-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            footer {
+                padding: 0.75rem;
+            }
+            
+            .btn-nav {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .slide {
+                padding: 0.5rem;
+            }
+            
+            .card {
+                padding: 0.75rem;
+            }
+            
+            .header-title h1 {
+                font-size: 1.5rem;
+            }
+            
+            .header-title p {
+                font-size: 0.9rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .battle-map {
+                height: 150px;
+            }
+            
+            .byzantine-army, .thessalian-army {
+                width: 50px;
+                height: 50px;
+                font-size: 0.7rem;
+            }
+            
+            .timeline-icon {
+                width: 35px;
+                height: 35px;
+            }
+        }
+        
+        /* Βελτιστοποίηση για μεγάλες οθόνες */
+        @media (min-width: 1200px) {
+            .card {
+                max-width: 1000px;
+            }
+        }
+        
+        @media (min-width: 1600px) {
+            .card {
+                max-width: 1200px;
+            }
+        }
+        
+        /* Βελτιστοποίηση για εκτυπώσεις */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+            
+            .btn-nav, footer {
+                display: none;
+            }
+            
+            .slide {
+                display: flex !important;
+                min-height: auto;
+                page-break-after: always;
+            }
         }
     </style>
 </head>
@@ -211,24 +392,24 @@
         <!-- Διαφάνεια 1: Εισαγωγή -->
         <section id="slide-1" class="slide active-slide">
             <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
-            <div class="card p-8 rounded-xl">
-                <header class="header-title p-6 rounded-t-xl text-center">
+            <div class="card p-8">
+                <header class="header-title p-6 text-center">
                     <h1 class="text-4xl sm:text-5xl font-extrabold text-white">Η Μάχη των Φαρσάλων (1277)</h1>
-                    <p class="text-xl mt-2 text-blue-100">Μια καθοριστική στιγμή για τη Βυζαντινή Αυτοκρατορία και την ανεξάρτητη Θεσσαλία</p>
+                    <p class="text-xl mt-2 text-amber-100">Μια καθοριστική στιγμή για τη Βυζαντινή Αυτοκρατορία και την ανεξάρτητη Θεσσαλία</p>
                 </header>
                 <div class="p-6">
                     <div class="flex flex-col md:flex-row items-center gap-6">
                         <div class="w-full md:w-1/2">
-                            <p class="text-lg mb-4 text-gray-300">Ο στόχος του Μιχαήλ Η΄ Παλαιολόγου ήταν η αποκατάσταση της βυζαντινής κυριαρχίας στον ελλαδικό χώρο, αντιμετωπίζοντας τον αντι-ενωτικό Ιωάννη Α΄ Δούκα.</p>
-                            <div class="flex items-center mt-4 text-yellow-400">
+                            <p class="text-lg mb-4">Ο στόχος του Μιχαήλ Η΄ Παλαιολόγου ήταν η αποκατάσταση της βυζαντινής κυριαρχίας στον ελλαδικό χώρο, αντιμετωπίζοντας τον αντι-ενωτικό Ιωάννη Α΄ Δούκα.</p>
+                            <div class="flex items-center mt-4 text-amber-700">
                                 <i class="fas fa-exclamation-triangle mr-2"></i>
                                 <p class="text-sm">Μια από τις πιο σημαντικές μάχες του 13ου αιώνα</p>
                             </div>
                         </div>
                         <div class="w-full md:w-1/2 flex justify-center">
-                            <div class="w-full h-64 rounded-lg overflow-hidden shadow-2xl bg-gradient-to-r from-blue-900 to-purple-900 flex items-center justify-center">
-                                <i class="fas fa-helmet-battle text-6xl text-white opacity-70"></i>
-                                <p class="ml-4 text-white text-lg">Απεικόνιση Μάχης</p>
+                            <div class="w-full h-64 rounded-lg overflow-hidden shadow-2xl bg-gradient-to-r from-amber-800 to-amber-600 flex items-center justify-center border border-amber-700">
+                                <i class="fas fa-helmet-battle text-6xl text-amber-200 opacity-80"></i>
+                                <p class="ml-4 text-amber-100 text-lg">Απεικόνιση Μάχης</p>
                             </div>
                         </div>
                     </div>
@@ -239,14 +420,14 @@
         <!-- Διαφάνεια 2: Ιστορικό Πλαίσιο και Αντιμαχόμενοι -->
         <section id="slide-2" class="slide">
             <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1519567241046-7f0a0b5b37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
-            <div class="card p-8 rounded-xl">
-                <h2 class="text-3xl font-bold mb-6 text-yellow-400 border-b border-yellow-400 pb-2 flex items-center">
+            <div class="card p-8">
+                <h2 class="text-3xl font-bold mb-6 text-amber-800 border-b border-amber-800 pb-2 flex items-center">
                     <i class="fas fa-landmark mr-3"></i>
                     Ιστορικό Πλαίσιο & Δυνάμεις
                 </h2>
                 <div class="grid md:grid-cols-2 gap-8">
                     <div>
-                        <h3 class="text-2xl font-semibold mb-3 text-white flex items-center">
+                        <h3 class="text-2xl font-semibold mb-3 flex items-center">
                             <i class="fas fa-history mr-2"></i>
                             Το Πλαίσιο
                         </h3>
@@ -256,8 +437,8 @@
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
                                 <div class="timeline-content">
-                                    <h4 class="font-bold text-white">Χρόνος</h4>
-                                    <p class="text-gray-300">Τέλη του 1277</p>
+                                    <h4 class="font-bold">Χρόνος</h4>
+                                    <p>Τέλη του 1277</p>
                                 </div>
                             </div>
                             <div class="timeline-item">
@@ -265,8 +446,8 @@
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div class="timeline-content">
-                                    <h4 class="font-bold text-white">Τόπος</h4>
-                                    <p class="text-gray-300">Πεδιάδα των Φαρσάλων, Θεσσαλία</p>
+                                    <h4 class="font-bold">Τόπος</h4>
+                                    <p>Πεδιάδα των Φαρσάλων, Θεσσαλία</p>
                                 </div>
                             </div>
                             <div class="timeline-item">
@@ -274,37 +455,37 @@
                                     <i class="fas fa-fist-raised"></i>
                                 </div>
                                 <div class="timeline-content">
-                                    <h4 class="font-bold text-white">Κίνητρο</h4>
-                                    <p class="text-gray-300">Η πρώτη μεγάλη επίθεση μετά την αποτυχία των Βυζαντινών στη Μάχη των Νέων Πατρών (περίπου 1273-1275)</p>
+                                    <h4 class="font-bold">Κίνητρο</h4>
+                                    <p>Η πρώτη μεγάλη επίθεση μετά την αποτυχία των Βυζαντινών στη Μάχη των Νέων Πατρών (περίπου 1273-1275)</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-semibold mb-3 text-white flex items-center">
+                        <h3 class="text-2xl font-semibold mb-3 flex items-center">
                             <i class="fas fa-users mr-2"></i>
                             Οι Αντίπαλοι
                         </h3>
                         <div class="space-y-4">
                             <!-- Βυζαντινός Στρατός -->
-                            <div class="bg-gradient-to-r from-blue-900 to-blue-800 p-4 rounded-lg border-l-4 border-blue-400">
-                                <p class="font-bold text-xl text-blue-300 flex items-center">
+                            <div class="bg-gradient-to-r from-amber-700 to-amber-600 p-4 rounded-lg border-l-4 border-amber-900">
+                                <p class="font-bold text-xl text-amber-100 flex items-center">
                                     <i class="fas fa-crown mr-2"></i>
                                     Βυζαντινός Στρατός (Κωνσταντινούπολη)
                                 </p>
-                                <ul class="list-disc list-inside ml-4 text-gray-200 mt-2">
+                                <ul class="list-disc list-inside ml-4 text-amber-50 mt-2">
                                     <li><strong>Ιωάννης Συναδηνός</strong> (Μέγας Στρατοπεδάρχης)</li>
                                     <li><strong>Μιχαήλ Καβαλλάριος</strong> (Μέγας Κονόσταυλος)</li>
                                     <li>Αριθμητική υπεροχή</li>
                                 </ul>
                             </div>
                             <!-- Δυνάμεις Θεσσαλίας -->
-                            <div class="bg-gradient-to-r from-red-900 to-red-800 p-4 rounded-lg border-l-4 border-red-400">
-                                <p class="font-bold text-xl text-red-300 flex items-center">
+                            <div class="bg-gradient-to-r from-amber-800 to-amber-700 p-4 rounded-lg border-l-4 border-amber-950">
+                                <p class="font-bold text-xl text-amber-100 flex items-center">
                                     <i class="fas fa-shield-alt mr-2"></i>
                                     Δυνάμεις Θεσσαλίας
                                 </p>
-                                <ul class="list-disc list-inside ml-4 text-gray-200 mt-2">
+                                <ul class="list-disc list-inside ml-4 text-amber-50 mt-2">
                                     <li><strong>Ιωάννης Α΄ Δούκας</strong> (Ανεξάρτητος Ηγεμόνας)</li>
                                     <li>Ενισχύσεις από <strong>Λατίνους Μισθοφόρους</strong></li>
                                     <li>Γνώση του εδάφους</li>
@@ -319,26 +500,26 @@
         <!-- Διαφάνεια 3: Εξέλιξη της Μάχης -->
         <section id="slide-3" class="slide">
             <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1547234931-29f988fea0d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
-            <div class="card p-8 rounded-xl">
-                <h2 class="text-3xl font-bold mb-6 text-green-400 border-b border-green-400 pb-2 flex items-center">
+            <div class="card p-8">
+                <h2 class="text-3xl font-bold mb-6 text-amber-800 border-b border-amber-800 pb-2 flex items-center">
                     <i class="fas fa-fighter-jet mr-3"></i>
                     Η Συντριβή του Βυζαντίου
                 </h2>
                 <div class="grid md:grid-cols-2 gap-8 items-center">
                     <div>
                         <div class="mb-6">
-                            <p class="text-xl font-semibold text-white mb-2 flex items-center">
+                            <p class="text-xl font-semibold mb-2 flex items-center">
                                 <i class="fas fa-trap mr-2"></i>
                                 Η Παγίδα των Φαρσάλων
                             </p>
-                            <p class="text-gray-300">Ο βυζαντινός στρατός εισβολής, παρόλο που υπερτερούσε αριθμητικά, παγιδεύτηκε στην περιοχή των Φαρσάλων. Οι λεπτομέρειες της μάχης είναι ελλιπείς, αλλά η έκβαση ήταν ξεκάθαρη: <strong>συντριπτική νίκη για τον Ιωάννη Α΄ Δούκα</strong>.</p>
+                            <p>Ο βυζαντινός στρατός εισβολής, παρόλο που υπερτερούσε αριθμητικά, παγιδεύτηκε στην περιοχή των Φαρσάλων. Οι λεπτομέρειες της μάχης είναι ελλιπείς, αλλά η έκβαση ήταν ξεκάθαρη: <strong>συντριπτική νίκη για τον Ιωάννη Α΄ Δούκα</strong>.</p>
                         </div>
                         <div>
-                            <p class="text-xl font-semibold text-white mb-2 flex items-center">
+                            <p class="text-xl font-semibold mb-2 flex items-center">
                                 <i class="fas fa-chess-knight mr-2"></i>
                                 Πιθανές Τακτικές
                             </p>
-                            <ul class="list-disc list-inside ml-4 text-gray-300">
+                            <ul class="list-disc list-inside ml-4">
                                 <li><strong>Αιφνιδιασμός και Ενέδρα:</strong> Πιθανή χρήση τακτικών ενέδρας από τον Ιωάννη Α΄ Δούκα, μια δοκιμασμένη τακτική κατά Δυτικών/μεγάλων στρατών.</li>
                                 <li><strong>Λατίνοι Μισθοφόροι:</strong> Η κρίσιμη συνεισφορά των Δυτικών μισθοφόρων ενίσχυσε τη θεσσαλική δύναμη.</li>
                                 <li><strong>Γνώση του εδάφους:</strong> Η τοπική γνώση έπαιξε καθοριστικό ρόλο στην επιλογή του πεδίου της μάχης.</li>
@@ -356,12 +537,12 @@
                             <div class="battle-arrow"></div>
                         </div>
                         <div class="mt-4 text-center">
-                            <p class="text-sm text-gray-400">Διάγραμμα της στρατηγικής θέσης των δυνάμεων στη μάχη</p>
+                            <p class="text-sm text-amber-700">Διάγραμμα της στρατηγικής θέσης των δυνάμεων στη μάχη</p>
                         </div>
                     </div>
                 </div>
-                <div class="mt-6 text-center bg-gradient-to-r from-red-900 to-red-800 p-4 rounded-lg">
-                    <p class="text-2xl font-extrabold text-white flex items-center justify-center">
+                <div class="mt-6 text-center bg-gradient-to-r from-amber-800 to-amber-700 p-4 rounded-lg">
+                    <p class="text-2xl font-extrabold text-amber-100 flex items-center justify-center">
                         <i class="fas fa-skull-crossbones mr-3"></i>
                         ΚΑΤΑΣΤΡΟΦΗ ΓΙΑ ΤΟ ΒΥΖΑΝΤΙΟ
                     </p>
@@ -372,47 +553,47 @@
         <!-- Διαφάνεια 4: Αποτελέσματα και Συνέπειες -->
         <section id="slide-4" class="slide">
             <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
-            <div class="card p-8 rounded-xl">
-                <h2 class="text-3xl font-bold mb-6 text-purple-400 border-b border-purple-400 pb-2 flex items-center">
+            <div class="card p-8">
+                <h2 class="text-3xl font-bold mb-6 text-amber-800 border-b border-amber-800 pb-2 flex items-center">
                     <i class="fas fa-balance-scale mr-3"></i>
-                    Πολιτικές & Θρησκευτικές Συνέπειες
+                    Πολιτικές & Θρησκευτικές Συνέπειας
                 </h2>
                 <div class="consequences-grid">
                     <div class="consequence-card negative">
-                        <h3 class="text-xl font-semibold text-white mb-3 flex items-center">
+                        <h3 class="text-xl font-semibold mb-3 flex items-center">
                             <i class="fas fa-user-slash mr-2"></i>
                             Καταστροφικά Αποτελέσματα
                         </h3>
-                        <ul class="list-disc list-inside space-y-2 ml-4 text-gray-300">
+                        <ul class="list-disc list-inside space-y-2 ml-4">
                             <li><strong>Ιωάννης Συναδηνός:</strong> Αιχμαλωτίστηκε από τις δυνάμεις της Θεσσαλίας.</li>
                             <li><strong>Μιχαήλ Καβαλλάριος:</strong> Απεβίωσε λίγο αργότερα από τα τραύματά του κατά τη διάρκεια της διαφυγής.</li>
                             <li>Σημαντικές απώλειες για τον βυζαντινό στρατό.</li>
                         </ul>
                     </div>
                     <div class="consequence-card positive">
-                        <h3 class="text-xl font-semibold text-white mb-3 flex items-center">
+                        <h3 class="text-xl font-semibold mb-3 flex items-center">
                             <i class="fas fa-crown mr-2"></i>
                             Ενίσχυση της Θεσσαλίας
                         </h3>
-                        <ul class="list-disc list-inside space-y-2 ml-4 text-gray-300">
+                        <ul class="list-disc list-inside space-y-2 ml-4">
                             <li>Η ήττα σταθεροποίησε τον Ιωάννη Α΄ Δούκα ως <strong>ανεξάρτητο ηγεμόνα</strong>.</li>
                             <li>Αύξηση του κύρους και της επιρροής της Θεσσαλίας στην περιοχή.</li>
                             <li>Αναγνώριση της ανεξαρτησίας από γειτονικές δυνάμεις.</li>
                         </ul>
                     </div>
                     <div class="consequence-card">
-                        <h3 class="text-xl font-semibold text-white mb-3 flex items-center">
+                        <h3 class="text-xl font-semibold mb-3 flex items-center">
                             <i class="fas fa-church mr-2"></i>
                             Αντι-Ενωτική Πολιτική
                         </h3>
-                        <ul class="list-disc list-inside space-y-2 ml-4 text-gray-300">
-                            <li>Ο Ιωάννης Α΄ Δούκας αυτοανακηρύχθηκε <strong>«αρχηγέτης των Ορθοδόξων Ελλήνων»</strong>.</li>
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>Ο Ιωάννη Α΄ Δούκας αυτοανακηρύχθηκε <strong>«αρχηγέτης των Ορθοδόξων Ελλήνων»</strong>.</li>
                             <li><strong>Σύνοδος του 1278:</strong> Συγκάλεσε σύνοδο που <strong>καταδίκασε τον Αυτοκράτορα Μιχαήλ Η΄ ως αιρετικό</strong>, εδραιώνοντας την αντίθεσή του στην Ένωση των Εκκλησιών.</li>
                         </ul>
                     </div>
                 </div>
-                <div class="mt-8 text-center border-t border-gray-700 pt-4">
-                    <p class="text-sm text-gray-400">Παρόλα αυτά, ο Μιχαήλ Η΄ πραγματοποίησε μια τελευταία προσπάθεια το 1282. Ο Συναδηνός, μετά την απελευθέρωσή του, συνέχισε τη σταδιοδρομία του.</p>
+                <div class="mt-8 text-center border-t border-amber-300 pt-4">
+                    <p class="text-sm text-amber-700">Παρόλα αυτά, ο Μιχαήλ Η΄ πραγματοποίησε μια τελευταία προσπάθεια το 1282. Ο Συναδηνός, μετά την απελευθέρωσή του, συνέχισε τη σταδιοδρομία του.</p>
                 </div>
             </div>
         </section>
@@ -420,54 +601,54 @@
         <!-- Διαφάνεια 5: Τέλος -->
         <section id="slide-5" class="slide">
             <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
-            <div class="card p-8 rounded-xl text-center">
-                <h2 class="text-4xl font-extrabold text-white mb-4 flex items-center justify-center">
+            <div class="card p-8 text-center">
+                <h2 class="text-4xl font-extrabold mb-4 flex items-center justify-center">
                     <i class="fas fa-flag-checkered mr-4"></i>
                     Τέλος Παρουσίασης
                 </h2>
-                <p class="text-xl text-gray-300 mb-6 max-w-3xl mx-auto">Η Μάχη των Φαρσάλων (1277) υπογράμμισε την αδυναμία της Βυζαντινής Αυτοκρατορίας να ανακτήσει τον πλήρη έλεγχο της ηπειρωτικής Ελλάδας και παγίωσε την κυριαρχία του Ιωάννη Α΄ Δούκα στη Θεσσαλία.</p>
+                <p class="text-xl mb-6 max-w-3xl mx-auto">Η Μάχη των Φαρσάλων (1277) υπογράμμισε την αδυναμία της Βυζαντινής Αυτοκρατορίας να ανακτήσει τον πλήρη έλεγχο της ηπειρωτικής Ελλάδας και παγίωσε την κυριαρχία του Ιωάννη Α΄ Δούκα στη Θεσσαλία.</p>
                 
-                <div class="my-8 p-6 bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg max-w-2xl mx-auto">
-                    <h3 class="text-2xl font-bold text-white mb-4">Κύρια Σημεία</h3>
+                <div class="my-8 p-6 bg-gradient-to-r from-amber-700 to-amber-600 rounded-lg max-w-2xl mx-auto border border-amber-800">
+                    <h3 class="text-2xl font-bold text-amber-100 mb-4">Κύρια Σημεία</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
                         <div class="flex items-start">
-                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
-                            <p class="text-gray-300">Συντριπτική νίκη της Θεσσαλίας έναντι του Βυζαντίου</p>
+                            <i class="fas fa-check text-amber-200 mt-1 mr-2"></i>
+                            <p class="text-amber-50">Συντριπτική νίκη της Θεσσαλίας έναντι του Βυζαντίου</p>
                         </div>
                         <div class="flex items-start">
-                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
-                            <p class="text-gray-300">Ενίσχυση της ανεξαρτησίας της Θεσσαλίας</p>
+                            <i class="fas fa-check text-amber-200 mt-1 mr-2"></i>
+                            <p class="text-amber-50">Ενίσχυση της ανεξαρτησίας της Θεσσαλίας</p>
                         </div>
                         <div class="flex items-start">
-                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
-                            <p class="text-gray-300">Αντι-ενωτική πολιτική του Ιωάννη Α΄ Δούκα</p>
+                            <i class="fas fa-check text-amber-200 mt-1 mr-2"></i>
+                            <p class="text-amber-50">Αντι-ενωτική πολιτική του Ιωάννη Α΄ Δούκα</p>
                         </div>
                         <div class="flex items-start">
-                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
-                            <p class="text-gray-300">Καθοριστική στιγμή για τις σχέσεις Βυζαντίου-Θεσσαλίας</p>
+                            <i class="fas fa-check text-amber-200 mt-1 mr-2"></i>
+                            <p class="text-amber-50">Καθοριστική στιγμή για τις σχέσεις Βυζαντίου-Θεσσαλίας</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="flex justify-center my-6">
-                    <div class="w-full max-w-md h-64 rounded-lg overflow-hidden shadow-2xl bg-gradient-to-r from-yellow-900 to-yellow-800 flex items-center justify-center">
-                        <i class="fas fa-monument text-6xl text-white opacity-70"></i>
-                        <p class="ml-4 text-white text-lg">Ιστορική Κληρονομιά</p>
+                    <div class="w-full max-w-md h-64 rounded-lg overflow-hidden shadow-2xl bg-gradient-to-r from-amber-800 to-amber-700 flex items-center justify-center border border-amber-900">
+                        <i class="fas fa-monument text-6xl text-amber-200 opacity-80"></i>
+                        <p class="ml-4 text-amber-100 text-lg">Ιστορική Κληρονομιά</p>
                     </div>
                 </div>
-                <p class="text-sm text-gray-400 mt-4">Πηγή: Ιστορικά στοιχεία από την παρεχόμενη περιγραφή.</p>
+                <p class="text-sm text-amber-700 mt-4">Πηγή: Ιστορικά στοιχεία από την παρεχόμενη περιγραφή.</p>
             </div>
         </section>
     </div>
 
     <!-- Πλοήγηση (Footer) -->
-    <footer class="fixed bottom-0 left-0 w-full bg-[#161b22] border-t border-gray-700 p-3 shadow-lg z-10">
+    <footer class="fixed bottom-0 left-0 w-full bg-amber-800 border-t border-amber-900 p-3 shadow-lg z-10">
         <div class="flex justify-between max-w-4xl mx-auto">
             <button id="prev-btn" class="btn-nav text-white px-4 py-2 rounded-lg font-semibold flex items-center disabled:opacity-50" disabled>
                 <i class="fas fa-arrow-left mr-2"></i>
                 Προηγούμενη
             </button>
-            <span id="slide-counter" class="text-lg font-medium text-gray-300 flex items-center">
+            <span id="slide-counter" class="text-lg font-medium text-amber-100 flex items-center">
                 <i class="fas fa-layer-group mr-2"></i>
                 Διαφάνεια 1/5
             </span>
