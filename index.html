@@ -398,18 +398,12 @@
                     <p class="text-xl mt-2 text-amber-100">Μια καθοριστική στιγμή για τη Βυζαντινή Αυτοκρατορία και την ανεξάρτητη Θεσσαλία</p>
                 </header>
                 <div class="p-6">
-                    <div class="flex flex-col md:flex-row items-center gap-6">
-                        <div class="w-full md:w-1/2">
+                    <div class="flex flex-col">
+                        <div class="w-full">
                             <p class="text-lg mb-4">Ο στόχος του Μιχαήλ Η΄ Παλαιολόγου ήταν η αποκατάσταση της βυζαντινής κυριαρχίας στον ελλαδικό χώρο, αντιμετωπίζοντας τον αντι-ενωτικό Ιωάννη Α΄ Δούκα.</p>
                             <div class="flex items-center mt-4 text-amber-700">
                                 <i class="fas fa-exclamation-triangle mr-2"></i>
                                 <p class="text-sm">Μια από τις πιο σημαντικές μάχες του 13ου αιώνα</p>
-                            </div>
-                        </div>
-                        <div class="w-full md:w-1/2 flex justify-center">
-                            <div class="w-full h-64 rounded-lg overflow-hidden shadow-2xl bg-gradient-to-r from-amber-800 to-amber-600 flex items-center justify-center border border-amber-700">
-                                <i class="fas fa-helmet-battle text-6xl text-amber-200 opacity-80"></i>
-                                <p class="ml-4 text-amber-100 text-lg">Απεικόνιση Μάχης</p>
                             </div>
                         </div>
                     </div>
@@ -505,7 +499,7 @@
                     <i class="fas fa-fighter-jet mr-3"></i>
                     Η Συντριβή του Βυζαντίου
                 </h2>
-                <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="grid md:grid-cols-1 gap-8">
                     <div>
                         <div class="mb-6">
                             <p class="text-xl font-semibold mb-2 flex items-center">
@@ -524,20 +518,6 @@
                                 <li><strong>Λατίνοι Μισθοφόροι:</strong> Η κρίσιμη συνεισφορά των Δυτικών μισθοφόρων ενίσχυσε τη θεσσαλική δύναμη.</li>
                                 <li><strong>Γνώση του εδάφους:</strong> Η τοπική γνώση έπαιξε καθοριστικό ρόλο στην επιλογή του πεδίου της μάχης.</li>
                             </ul>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="battle-map">
-                            <div class="byzantine-army">
-                                Βυζάντιο
-                            </div>
-                            <div class="thessalian-army">
-                                Θεσσαλία
-                            </div>
-                            <div class="battle-arrow"></div>
-                        </div>
-                        <div class="mt-4 text-center">
-                            <p class="text-sm text-amber-700">Διάγραμμα της στρατηγικής θέσης των δυνάμεων στη μάχη</p>
                         </div>
                     </div>
                 </div>
@@ -630,12 +610,6 @@
                     </div>
                 </div>
                 
-                <div class="flex justify-center my-6">
-                    <div class="w-full max-w-md h-64 rounded-lg overflow-hidden shadow-2xl bg-gradient-to-r from-amber-800 to-amber-700 flex items-center justify-center border border-amber-900">
-                        <i class="fas fa-monument text-6xl text-amber-200 opacity-80"></i>
-                        <p class="ml-4 text-amber-100 text-lg">Ιστορική Κληρονομιά</p>
-                    </div>
-                </div>
                 <p class="text-sm text-amber-700 mt-4">Πηγή: Ιστορικά στοιχεία από την παρεχόμενη περιγραφή.</p>
             </div>
         </section>
@@ -676,6 +650,12 @@
                 }
             });
             updateNavigation();
+            
+            // Κύλιση στην κορυφή της σελίδας
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
 
         // Συνάρτηση για την ενημέρωση των κουμπιών πλοήγησης και του μετρητή
