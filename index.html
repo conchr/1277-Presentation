@@ -6,8 +6,6 @@
     <title>Η Μάχη των Φαρσάλων (1277)</title>
     <!-- Φόρτωση Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Φόρτωση Font Awesome για εικονίδια -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap');
         
@@ -28,6 +26,7 @@
                 radial-gradient(circle at 50% 50%, rgba(205, 180, 130, 0.05) 0%, rgba(205, 180, 130, 0.05) 30%, transparent 30%, transparent 100%);
             background-size: 300px 300px, 300px 300px, 200px 200px;
             position: relative;
+            padding-bottom: 120px; /* Χώρος για το footer */
         }
         
         body::before {
@@ -46,15 +45,16 @@
         }
         
         .slide {
-            min-height: 100vh;
+            min-height: calc(100vh - 140px); /* Αφαιρούμε χώρο για το footer */
             display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 1rem;
+            padding: 2rem 1rem;
             animation: fadeIn 0.7s ease-in-out;
             position: relative;
             overflow: hidden;
+            margin-bottom: 20px; /* Επιπλέον χώρος μεταξύ slides */
         }
         
         @keyframes fadeIn {
@@ -76,6 +76,7 @@
             overflow: hidden;
             border: 1px solid rgba(166, 144, 100, 0.3);
             position: relative;
+            margin-bottom: 20px;
         }
         
         .card::before {
@@ -306,6 +307,15 @@
                 padding: 0.5rem 1rem;
                 font-size: 0.9rem;
             }
+            
+            body {
+                padding-bottom: 140px; /* Περισσότερος χώρος για κινητές συσκευές */
+            }
+            
+            .slide {
+                min-height: calc(100vh - 160px);
+                padding: 1rem 0.5rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -343,6 +353,14 @@
                 width: 35px;
                 height: 35px;
             }
+            
+            body {
+                padding-bottom: 160px;
+            }
+            
+            .slide {
+                min-height: calc(100vh - 180px);
+            }
         }
         
         /* Βελτιστοποίηση για μεγάλες οθόνες */
@@ -363,6 +381,7 @@
             body {
                 background: white;
                 color: black;
+                padding-bottom: 0;
             }
             
             .card {
@@ -402,7 +421,6 @@
                         <div class="w-full">
                             <p class="text-lg mb-4">Ο στόχος του Μιχαήλ Η΄ Παλαιολόγου ήταν η αποκατάσταση της βυζαντινής κυριαρχίας στον ελλαδικό χώρο, αντιμετωπίζοντας τον αντι-ενωτικό Ιωάννη Α΄ Δούκα.</p>
                             <div class="flex items-center mt-4 text-amber-700">
-                                <i class="fas fa-exclamation-triangle mr-2"></i>
                                 <p class="text-sm">Μια από τις πιο σημαντικές μάχες του 13ου αιώνα</p>
                             </div>
                         </div>
@@ -415,20 +433,18 @@
         <section id="slide-2" class="slide">
             <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1519567241046-7f0a0b5b37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
             <div class="card p-8">
-                <h2 class="text-3xl font-bold mb-6 text-amber-800 border-b border-amber-800 pb-2 flex items-center">
-                    <i class="fas fa-landmark mr-3"></i>
+                <h2 class="text-3xl font-bold mb-6 text-amber-800 border-b border-amber-800 pb-2">
                     Ιστορικό Πλαίσιο & Δυνάμεις
                 </h2>
                 <div class="grid md:grid-cols-2 gap-8">
                     <div>
-                        <h3 class="text-2xl font-semibold mb-3 flex items-center">
-                            <i class="fas fa-history mr-2"></i>
+                        <h3 class="text-2xl font-semibold mb-3">
                             Το Πλαίσιο
                         </h3>
                         <div class="timeline-container">
                             <div class="timeline-item">
                                 <div class="timeline-icon">
-                                    <i class="fas fa-calendar-alt"></i>
+                                    📅
                                 </div>
                                 <div class="timeline-content">
                                     <h4 class="font-bold">Χρόνος</h4>
@@ -437,7 +453,7 @@
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-icon">
-                                    <i class="fas fa-map-marker-alt"></i>
+                                    📍
                                 </div>
                                 <div class="timeline-content">
                                     <h4 class="font-bold">Τόπος</h4>
@@ -446,7 +462,7 @@
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-icon">
-                                    <i class="fas fa-fist-raised"></i>
+                                    ⚔️
                                 </div>
                                 <div class="timeline-content">
                                     <h4 class="font-bold">Κίνητρο</h4>
@@ -456,15 +472,13 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-semibold mb-3 flex items-center">
-                            <i class="fas fa-users mr-2"></i>
+                        <h3 class="text-2xl font-semibold mb-3">
                             Οι Αντίπαλοι
                         </h3>
                         <div class="space-y-4">
                             <!-- Βυζαντινός Στρατός -->
                             <div class="bg-gradient-to-r from-amber-700 to-amber-600 p-4 rounded-lg border-l-4 border-amber-900">
-                                <p class="font-bold text-xl text-amber-100 flex items-center">
-                                    <i class="fas fa-crown mr-2"></i>
+                                <p class="font-bold text-xl text-amber-100">
                                     Βυζαντινός Στρατός (Κωνσταντινούπολη)
                                 </p>
                                 <ul class="list-disc list-inside ml-4 text-amber-50 mt-2">
@@ -475,8 +489,7 @@
                             </div>
                             <!-- Δυνάμεις Θεσσαλίας -->
                             <div class="bg-gradient-to-r from-amber-800 to-amber-700 p-4 rounded-lg border-l-4 border-amber-950">
-                                <p class="font-bold text-xl text-amber-100 flex items-center">
-                                    <i class="fas fa-shield-alt mr-2"></i>
+                                <p class="font-bold text-xl text-amber-100">
                                     Δυνάμεις Θεσσαλίας
                                 </p>
                                 <ul class="list-disc list-inside ml-4 text-amber-50 mt-2">
@@ -495,22 +508,19 @@
         <section id="slide-3" class="slide">
             <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1547234931-29f988fea0d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
             <div class="card p-8">
-                <h2 class="text-3xl font-bold mb-6 text-amber-800 border-b border-amber-800 pb-2 flex items-center">
-                    <i class="fas fa-fighter-jet mr-3"></i>
+                <h2 class="text-3xl font-bold mb-6 text-amber-800 border-b border-amber-800 pb-2">
                     Η Συντριβή του Βυζαντίου
                 </h2>
                 <div class="grid md:grid-cols-1 gap-8">
                     <div>
                         <div class="mb-6">
-                            <p class="text-xl font-semibold mb-2 flex items-center">
-                                <i class="fas fa-trap mr-2"></i>
+                            <p class="text-xl font-semibold mb-2">
                                 Η Παγίδα των Φαρσάλων
                             </p>
                             <p>Ο βυζαντινός στρατός εισβολής, παρόλο που υπερτερούσε αριθμητικά, παγιδεύτηκε στην περιοχή των Φαρσάλων. Οι λεπτομέρειες της μάχης είναι ελλιπείς, αλλά η έκβαση ήταν ξεκάθαρη: <strong>συντριπτική νίκη για τον Ιωάννη Α΄ Δούκα</strong>.</p>
                         </div>
                         <div>
-                            <p class="text-xl font-semibold mb-2 flex items-center">
-                                <i class="fas fa-chess-knight mr-2"></i>
+                            <p class="text-xl font-semibold mb-2">
                                 Πιθανές Τακτικές
                             </p>
                             <ul class="list-disc list-inside ml-4">
@@ -522,8 +532,7 @@
                     </div>
                 </div>
                 <div class="mt-6 text-center bg-gradient-to-r from-amber-800 to-amber-700 p-4 rounded-lg">
-                    <p class="text-2xl font-extrabold text-amber-100 flex items-center justify-center">
-                        <i class="fas fa-skull-crossbones mr-3"></i>
+                    <p class="text-2xl font-extrabold text-amber-100">
                         ΚΑΤΑΣΤΡΟΦΗ ΓΙΑ ΤΟ ΒΥΖΑΝΤΙΟ
                     </p>
                 </div>
@@ -534,14 +543,12 @@
         <section id="slide-4" class="slide">
             <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
             <div class="card p-8">
-                <h2 class="text-3xl font-bold mb-6 text-amber-800 border-b border-amber-800 pb-2 flex items-center">
-                    <i class="fas fa-balance-scale mr-3"></i>
+                <h2 class="text-3xl font-bold mb-6 text-amber-800 border-b border-amber-800 pb-2">
                     Πολιτικές & Θρησκευτικές Συνέπειας
                 </h2>
                 <div class="consequences-grid">
                     <div class="consequence-card negative">
-                        <h3 class="text-xl font-semibold mb-3 flex items-center">
-                            <i class="fas fa-user-slash mr-2"></i>
+                        <h3 class="text-xl font-semibold mb-3">
                             Καταστροφικά Αποτελέσματα
                         </h3>
                         <ul class="list-disc list-inside space-y-2 ml-4">
@@ -551,8 +558,7 @@
                         </ul>
                     </div>
                     <div class="consequence-card positive">
-                        <h3 class="text-xl font-semibold mb-3 flex items-center">
-                            <i class="fas fa-crown mr-2"></i>
+                        <h3 class="text-xl font-semibold mb-3">
                             Ενίσχυση της Θεσσαλίας
                         </h3>
                         <ul class="list-disc list-inside space-y-2 ml-4">
@@ -562,8 +568,7 @@
                         </ul>
                     </div>
                     <div class="consequence-card">
-                        <h3 class="text-xl font-semibold mb-3 flex items-center">
-                            <i class="fas fa-church mr-2"></i>
+                        <h3 class="text-xl font-semibold mb-3">
                             Αντι-Ενωτική Πολιτική
                         </h3>
                         <ul class="list-disc list-inside space-y-2 ml-4">
@@ -582,8 +587,7 @@
         <section id="slide-5" class="slide">
             <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
             <div class="card p-8 text-center">
-                <h2 class="text-4xl font-extrabold mb-4 flex items-center justify-center">
-                    <i class="fas fa-flag-checkered mr-4"></i>
+                <h2 class="text-4xl font-extrabold mb-4">
                     Τέλος Παρουσίασης
                 </h2>
                 <p class="text-xl mb-6 max-w-3xl mx-auto">Η Μάχη των Φαρσάλων (1277) υπογράμμισε την αδυναμία της Βυζαντινής Αυτοκρατορίας να ανακτήσει τον πλήρη έλεγχο της ηπειρωτικής Ελλάδας και παγίωσε την κυριαρχία του Ιωάννη Α΄ Δούκα στη Θεσσαλία.</p>
@@ -592,19 +596,15 @@
                     <h3 class="text-2xl font-bold text-amber-100 mb-4">Κύρια Σημεία</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
                         <div class="flex items-start">
-                            <i class="fas fa-check text-amber-200 mt-1 mr-2"></i>
                             <p class="text-amber-50">Συντριπτική νίκη της Θεσσαλίας έναντι του Βυζαντίου</p>
                         </div>
                         <div class="flex items-start">
-                            <i class="fas fa-check text-amber-200 mt-1 mr-2"></i>
                             <p class="text-amber-50">Ενίσχυση της ανεξαρτησίας της Θεσσαλίας</p>
                         </div>
                         <div class="flex items-start">
-                            <i class="fas fa-check text-amber-200 mt-1 mr-2"></i>
                             <p class="text-amber-50">Αντι-ενωτική πολιτική του Ιωάννη Α΄ Δούκα</p>
                         </div>
                         <div class="flex items-start">
-                            <i class="fas fa-check text-amber-200 mt-1 mr-2"></i>
                             <p class="text-amber-50">Καθοριστική στιγμή για τις σχέσεις Βυζαντίου-Θεσσαλίας</p>
                         </div>
                     </div>
@@ -617,19 +617,23 @@
 
     <!-- Πλοήγηση (Footer) -->
     <footer class="fixed bottom-0 left-0 w-full bg-amber-800 border-t border-amber-900 p-3 shadow-lg z-10">
-        <div class="flex justify-between max-w-4xl mx-auto">
-            <button id="prev-btn" class="btn-nav text-white px-4 py-2 rounded-lg font-semibold flex items-center disabled:opacity-50" disabled>
-                <i class="fas fa-arrow-left mr-2"></i>
-                Προηγούμενη
-            </button>
-            <span id="slide-counter" class="text-lg font-medium text-amber-100 flex items-center">
-                <i class="fas fa-layer-group mr-2"></i>
-                Διαφάνεια 1/5
-            </span>
-            <button id="next-btn" class="btn-nav text-white px-4 py-2 rounded-lg font-semibold flex items-center disabled:opacity-50">
-                Επόμενη
-                <i class="fas fa-arrow-right ml-2"></i>
-            </button>
+        <div class="flex flex-col items-center space-y-2">
+            <div class="flex justify-between w-full max-w-4xl">
+                <button id="prev-btn" class="btn-nav text-white px-4 py-2 rounded-lg font-semibold flex items-center disabled:opacity-50" disabled>
+                    Προηγούμενη
+                </button>
+                <span id="slide-counter" class="text-lg font-medium text-amber-100 flex items-center">
+                    Διαφάνεια 1/5
+                </span>
+                <button id="next-btn" class="btn-nav text-white px-4 py-2 rounded-lg font-semibold flex items-center disabled:opacity-50">
+                    Επόμενη
+                </button>
+            </div>
+            <div class="text-center">
+                <a href="https://conchr.github.io/Farsala-Center-Page/" class="btn-nav text-white px-4 py-2 rounded-lg font-semibold flex items-center">
+                    Κεντρική Σελίδα
+                </a>
+            </div>
         </div>
     </footer>
 
